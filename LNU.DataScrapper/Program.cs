@@ -19,6 +19,7 @@ namespace LNU.DataScrapper
             var database = client.GetDatabase("rss");
             var collection = database.GetCollection<Article>("article");
 
+
             foreach (var item in list)
             {
                 var elementExist = collection.AsQueryable().Any(el => el.Title == item.Title && item.PublishedAt == el.PublishedAt);
