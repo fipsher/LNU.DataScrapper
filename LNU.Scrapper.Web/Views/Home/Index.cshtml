@@ -1,0 +1,66 @@
+﻿@model IEnumerable<LNU.Scrapper.Web.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Load", "Home", FormMethod.Post))
+{
+    <input placeholder="country" name="country" />
+    <input placeholder="query" name="q" />
+    <input placeholder="source" name="source" />
+    <select name="type">
+        <option value="top-headlines">top-headlines</option>
+        <option value="everything">everything</option>
+    </select>
+    <button type="submit">Load</button>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlToImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishedAt)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@item.Url">Go</a>
+            </td>
+            <td>
+                <img width="100" src="@item.UrlToImage" alt="image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishedAt)
+            </td>
+        </tr>
+    }
+
+</table>

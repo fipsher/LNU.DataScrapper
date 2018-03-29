@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using LNU.Scrapper.Web.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,21 +7,23 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LNU.DataScrapper
+namespace LNU.Scrapper.Web
 {
     public class CNNDataProvider
     {
-        private readonly string url;
+        private string url;
 
         public CNNDataProvider(string url)
         {
             this.url = url;
         }
 
-        public async Task<List<Article>> GetRSS()
+        public async Task<List<Article>> GetRSS(Query query)
         {
             using (var client = new HttpClient())
             {
+                url = $"{url}{query.Type}?sources={query.Source}&apiKey=88467a0580364682aa756073633bf4b0&q={query.Q}&country={query.Country}";
+
                 var result = await client.GetAsync(url);
                 result.EnsureSuccessStatusCode();
 

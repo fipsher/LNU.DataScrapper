@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LNU.DataScrapper
+namespace LNU.Scrapper.Web
 {
     public class RootObject
     {

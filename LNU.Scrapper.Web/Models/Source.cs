@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LNU.DataScrapper
+namespace LNU.Scrapper.Web
 {
     public class Source
     {

@@ -65,10 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CNNDataProvider.cs" />
-    <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\RootObject.cs" />
-    <Compile Include="Models\Source.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
