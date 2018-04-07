@@ -259,3 +259,18 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+.LNU.JAVA/bin/
+.LNU.JAVA/obj/
+
+.LNU.JAVA.Wpf/bin/
+.LNU.JAVA.Wpf/obj/
+
+.LNU.JAVA.Data/bin/
+.LNU.JAVA.Data/obj/
+
+.LNU.JAVA.Core/bin/
+.LNU.JAVA.Core/obj/
+
+.LNU.JAVA.API/bin/
+.LNU.JAVA.API/obj/

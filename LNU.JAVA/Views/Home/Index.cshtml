@@ -1,0 +1,76 @@
+﻿@model LNU.JAVA.Models.IndexModel
+
+@{
+    ViewBag.Title = "Index";
+    var selectList = new SelectList(new List<string> { "top-headlines", "everything" }, Model.Query.Type);
+
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Load", "Home", FormMethod.Post))
+{
+    <input placeholder="country" name="country" value="@Model.Query.Country" />
+    <input placeholder="query" name="q" value="@Model.Query.Q" />
+    <input placeholder="source" name="source" value="@Model.Query.Source" />
+    @Html.DropDownList("type", selectList)
+    <button type="submit">Load</button>
+}
+
+<table id="table-articles" class="table">
+    <thead>
+        <tr>
+            <th>
+                Author
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Url
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Publish date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Articles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a href="@item.Url">Go</a>
+                </td>
+                <td>
+                    <img width="100" src="@item.UrlToImage" alt="image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishedAt)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#table-articles').DataTable();
+        });
+    </script>
+}

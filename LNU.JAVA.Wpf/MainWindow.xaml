@@ -1,0 +1,24 @@
+﻿<Window x:Class="LNU.JAVA.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LNU.JAVA.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <WebBrowser Height="400" Name="myWebBrowser" VerticalAlignment="Top" Source="http://localhost:37444/Home/PartialIndex"></WebBrowser>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="264,495,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox Name="tb_country" HorizontalAlignment="Left" Height="23" Margin="82,411,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tb_q" HorizontalAlignment="Left" Height="23" Margin="82,439,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tb_source" HorizontalAlignment="Left" Height="23" Margin="82,467,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Country&#xD;&#xA;" HorizontalAlignment="Left" Margin="11,408,0,0" VerticalAlignment="Top" Height="26" Width="53"/>
+        <Label Content="Q&#xA;" HorizontalAlignment="Left" Margin="11,435,0,0" VerticalAlignment="Top" Height="26" Width="53"/>
+        <Label Content="Source&#xA;" HorizontalAlignment="Left" Margin="11,463,0,0" VerticalAlignment="Top" Height="26" Width="53"/>
+        <Label Content="Country&#xA;" HorizontalAlignment="Left" Margin="11,491,0,0" VerticalAlignment="Top" Height="26" Width="53"/>
+        <ListBox Name="select_type" HorizontalAlignment="Left" Height="64" Margin="82,495,0,0" VerticalAlignment="Top" Width="120">
+            <ListBoxItem >top-headlines</ListBoxItem>
+            <ListBoxItem>everything</ListBoxItem>
+        </ListBox>
+    </Grid>
+</Window>
