@@ -1,5 +1,6 @@
 ﻿using LNU.JAVA.API;
 using LNU.JAVA.Core;
+using LNU.JAVA.Scheduler.JobRunner;
 using System.Collections.Generic;
 
 namespace LNU.JAVA.App
@@ -11,7 +12,7 @@ namespace LNU.JAVA.App
         public ServiceFactory()
         {
             services = new List<IService>{
-                new WebService(Settings.WebServiceUrl)
+                new WebService(Settings.WebServiceUrl, new JobScheduler())
             };
         }
 

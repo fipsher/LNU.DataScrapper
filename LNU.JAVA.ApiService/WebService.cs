@@ -1,5 +1,7 @@
 ﻿using LNU.JAVA.API.App_Start;
 using LNU.JAVA.Core;
+using LNU.JAVA.Scheduler.JobRunner;
+using LNU.JAVA.Scheduler.Jobs;
 using Microsoft.Owin.Hosting;
 using System;
 using System.Configuration;
@@ -10,14 +12,18 @@ namespace LNU.JAVA.API
     {
         private readonly string WebServiceUrl;
         private IDisposable _webapp;
-        
-        public WebService(string webServiceUrl)
+        private IJobScheduler _scheduler;
+
+        public WebService(string webServiceUrl, IJobScheduler scheduler)
         {
             WebServiceUrl = webServiceUrl;
+            _scheduler = scheduler;
         }
 
         public void OnStart()
         {
+            _scheduler.ScheduleJob<GetRssJob>();
+
             _webapp = WebApp.Start
                     (
                         new StartOptions(url: WebServiceUrl),
@@ -27,6 +33,7 @@ namespace LNU.JAVA.API
 
         public void OnStop()
         {
+            _scheduler.Stop();
             _webapp?.Dispose();
         }
     }
