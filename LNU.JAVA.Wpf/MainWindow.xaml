@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <Grid>
-        <WebBrowser Height="400" Name="myWebBrowser" VerticalAlignment="Top" Source="http://localhost:37444/Home/PartialIndex"></WebBrowser>
+        <WebBrowser Height="400" Name="myWebBrowser" VerticalAlignment="Top" Source="http://localhost:60982/Home/PartialIndex"></WebBrowser>
         <Button Content="Load" HorizontalAlignment="Left" Margin="264,495,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <TextBox Name="tb_country" HorizontalAlignment="Left" Height="23" Margin="82,411,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="tb_q" HorizontalAlignment="Left" Height="23" Margin="82,439,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
