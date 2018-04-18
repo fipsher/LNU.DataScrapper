@@ -1,4 +1,5 @@
-﻿using Owin;
+﻿using LNU.JAVA.ApiService;
+using Owin;
 using System.Web.Http;
 
 namespace LNU.JAVA.API.App_Start
@@ -11,6 +12,7 @@ namespace LNU.JAVA.API.App_Start
             WebApiConfig.Register(config);
 
             app.UseWebApi(config);
+            SwaggerConfig.Register(config);
         }
     }
 }
