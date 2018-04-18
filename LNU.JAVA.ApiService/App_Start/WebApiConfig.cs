@@ -11,11 +11,9 @@ namespace LNU.JAVA.API
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
-            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            config.Formatters.JsonFormatter.UseDataContractJsonSerializer = true;
-            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

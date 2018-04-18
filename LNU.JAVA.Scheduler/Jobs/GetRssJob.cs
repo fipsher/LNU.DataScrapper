@@ -24,7 +24,7 @@ namespace LNU.JAVA.Scheduler.Jobs
                 });
 
                 var repo = new Repository(connectionString);
-                await repo.Update(list);
+                await repo.Add(list);
             }
             catch(Exception ex)
             {

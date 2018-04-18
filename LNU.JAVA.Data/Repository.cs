@@ -1,5 +1,6 @@
 ﻿using LNU.JAVA.Core;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,21 +18,43 @@ namespace LNU.JAVA.Data
             collection = database.GetCollection<Article>("article");
         }
 
-        public async Task Update(List<Article> articles)
+        public async Task Add(Article article)
+        {
+            var elementExist = collection.AsQueryable().Any(el => el.Title == article.Title && article.PublishedAt == el.PublishedAt);
+            if (!elementExist)
+            {
+                await collection.InsertOneAsync(article);
+            }
+        }
+
+        public async Task Add(List<Article> articles)
         {
             foreach (var item in articles)
             {
-                var elementExist = collection.AsQueryable().Any(el => el.Title == item.Title && item.PublishedAt == el.PublishedAt);
-                if (!elementExist)
-                {
-                    await collection.InsertOneAsync(item);
-                }
+                await Add(item);
             }
+        }
+
+        public async Task Update(Article article)
+        {
+            var filter = Builders<Article>.Filter.Eq(s => s.ID, article.ID);
+            await collection.ReplaceOneAsync(filter, article);
+        }
+
+        public async Task Delete(Guid id)
+        {
+            var filter = Builders<Article>.Filter.Eq(s => s.ID, id);
+            await collection.DeleteOneAsync(filter);
         }
 
         public IQueryable<Article> GetAll()
         {
             return collection.AsQueryable();
+        }
+
+        public Article GetById(Guid id)
+        {
+            return collection.AsQueryable().SingleOrDefault(el => el.ID == id);
         }
     }
 }
