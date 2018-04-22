@@ -3,6 +3,7 @@ using LNU.JAVA.Mvc.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace LNU.JAVA.Mvc.Controllers
 
         public HomeController()
         {
-            url = "http://localhost:61274/api/values/";
+            url = $"{ConfigurationManager.AppSettings["apiUrl"]}/api/values/";
         }
 
         [AllowAnonymous]

@@ -1,8 +1,10 @@
 ﻿using LNU.JAVA.Core;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace LNU.JAVA.Data
@@ -55,6 +57,14 @@ namespace LNU.JAVA.Data
         public Article GetById(Guid id)
         {
             return collection.AsQueryable().SingleOrDefault(el => el.ID == id);
+        }
+
+        public List<Article> WhereTitleContains(string searchTerm)
+        {
+            var lower = searchTerm.ToLower();
+           
+            return collection.AsQueryable().Where(el =>
+    el.Title.ToLower().Contains(lower)).ToList();
         }
     }
 }

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Chart Index";
+}
+
+<h2>Chart Index</h2>
+
+<form id="chart-form">
+    <div class="form-group">
+        <label for="searchTerm">Search Term</label>
+        <input type="text" name="searchTerm" class="form-control" id="searchTerm">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="container">
+    <div style="position: relative; height:30vh; width:50vw">
+        <canvas id="chart"></canvas>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            window.onbeforeprint = function () {
+                for (var id in Chart.instances) {
+                    Chart.instances[id].resize()
+                }
+            };
+
+            $('#chart-form').submit(function (e) {
+                e.preventDefault();
+
+                var term = $('#searchTerm').val();
+
+                $.getJSON("/Chart/GetChartData?searchTerm=" + term, function (response) {
+                    console.log(response);
+
+                    var labels = response.map(function (el) { return el.X; });
+                    var data = response.map(function (el) { return el.Y; });
+                    var ctx = $('#chart');
+
+                    var barChartData = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Chart',
+                            data: data
+                        }],
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    };
+                    
+                    var myBarChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: barChartData
+                    });
+                }, function () {
+                    alert('Whoops!');
+                });
+
+                return false;
+            });
+        });
+
+
+      
+
+    </script>
+}
