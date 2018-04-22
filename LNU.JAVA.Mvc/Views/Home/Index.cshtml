@@ -1,0 +1,85 @@
+﻿@model LNU.JAVA.Mvc.Models.IndexModel
+
+@{
+    ViewBag.Title = "Index";
+    var selectList = new SelectList(new List<string> { "top-headlines", "everything" }, Model.Query.Type);
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Load", "Home", FormMethod.Post))
+{
+    <input placeholder="country" name="country" value="@Model.Query.Country" />
+    <input placeholder="query" name="q" value="@Model.Query.Q" />
+    <input placeholder="source" name="source" value="@Model.Query.Source" />
+    @Html.DropDownList("type", selectList)
+    <button type="submit">Load</button>
+}
+
+<hr />
+@Html.ActionLink("Create", "Create")
+<hr />
+
+<table id="table-articles" class="table">
+    <thead>
+        <tr>
+            <th>
+                Author
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Url
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Publish date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Articles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a href="@item.Url">Go</a>
+                </td>
+                <td>
+                    <img width="100" src="@item.UrlToImage" alt="image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishedAt)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table-articles').DataTable();
+        });
+    </script>
+}

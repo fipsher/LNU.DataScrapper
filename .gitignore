@@ -260,8 +260,8 @@ paket-files/
 __pycache__/
 *.pyc
 
-.LNU.JAVA/bin/
-.LNU.JAVA/obj/
+.LNU.JAVA.Mvc/bin/
+.LNU.JAVA.Mvc/obj/
 
 .LNU.JAVA.Wpf/bin/
 .LNU.JAVA.Wpf/obj/

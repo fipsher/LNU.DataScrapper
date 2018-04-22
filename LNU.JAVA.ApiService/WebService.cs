@@ -4,7 +4,6 @@ using LNU.JAVA.Scheduler.JobRunner;
 using LNU.JAVA.Scheduler.Jobs;
 using Microsoft.Owin.Hosting;
 using System;
-using System.Configuration;
 
 namespace LNU.JAVA.API
 {
